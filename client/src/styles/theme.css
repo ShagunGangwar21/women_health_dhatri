@@ -1,0 +1,184 @@
+/* ==========================================================================
+   DHATRI (धात्री) — DESIGN SYSTEM & THEME TOKENS
+   Palette:
+   Blush Pink: #F6D6D9 | Soft Pink: #F8C5CE | Primary Rose: #D96F89
+   Burgundy: #702B4C   | Cream: #FFF8F3     | Sage Green: #81977C
+   Deep Green: #4F725D | Dark Plum: #191217 | Dark Card: #281D26
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-hindi: 'Rozha One', 'Noto Sans Devanagari', serif;
+
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light Theme (Default) */
+[data-theme="light"], :root {
+  --color-blush-pink: #F6D6D9;
+  --color-soft-pink: #F8C5CE;
+  --color-primary-rose: #D96F89;
+  --color-burgundy: #702B4C;
+  --color-cream: #FFF8F3;
+  --color-sage: #81977C;
+  --color-deep-green: #4F725D;
+
+  --bg-primary: #FFF8F3;            /* Warm Cream */
+  --bg-secondary: #FCF4ED;          /* Subtle Cream Tint */
+  --bg-card: #FFFFFF;               /* Clean Surface */
+  --bg-card-hover: #FFF9F7;
+  --bg-accent: #F6D6D9;             /* Blush Pink */
+  --bg-accent-soft: rgba(246, 214, 217, 0.4);
+  --bg-sage-soft: rgba(129, 151, 124, 0.15);
+
+  --text-primary: #3B1B2A;          /* Deep warm espresso/plum */
+  --text-secondary: #6B4E5D;        /* Elegant mauve brown */
+  --text-muted: #8F7684;            /* Soft muted violet */
+  --text-accent: #702B4C;           /* Burgundy */
+  --text-rose: #D96F89;             /* Primary Rose */
+  --text-sage: #4F725D;             /* Deep Green */
+
+  --border-subtle: rgba(112, 43, 76, 0.08);
+  --border-card: rgba(217, 111, 137, 0.18);
+  --border-focus: #D96F89;
+
+  --shadow-sm: 0 2px 8px rgba(112, 43, 76, 0.04);
+  --shadow-md: 0 8px 24px rgba(112, 43, 76, 0.08);
+  --shadow-lg: 0 16px 40px rgba(112, 43, 76, 0.12);
+  --shadow-glow: 0 0 24px rgba(217, 111, 137, 0.25);
+
+  --badge-bg: #F8C5CE;
+  --badge-text: #702B4C;
+
+  --header-bg: rgba(255, 248, 243, 0.94);
+  --sidebar-bg: #FFFFFF;
+  --sidebar-border: rgba(112, 43, 76, 0.08);
+  --nav-item-bg: transparent;
+  --nav-item-text: #6B4E5D;
+  --nav-item-icon: #8F7684;
+  --nav-item-hover-bg: rgba(246, 214, 217, 0.45);
+  --nav-item-hover-text: #702B4C;
+  --nav-item-hover-icon: #702B4C;
+  --nav-item-active-bg: #702B4C;
+  --nav-item-active-text: #FFF8F3;
+  --nav-item-active-icon: #FFF8F3;
+  --nav-item-active-border: rgba(112, 43, 76, 0.2);
+
+  /* Universal Component Aliases */
+  --color-surface: var(--bg-card);
+  --color-bg: var(--bg-primary);
+  --border-color: var(--border-card);
+  --color-rose: var(--color-primary-rose);
+  --input-bg: #FFFFFF;
+  --input-border: var(--border-card);
+
+  /* Interactive Control, Filter, Chat & Upload Tokens (Light Mode) */
+  --control-active-bg: #702B4C;
+  --control-active-text: #FFF8F3;
+  --control-active-border: rgba(112, 43, 76, 0.2);
+  --control-bg: var(--bg-card);
+  --control-hover-bg: rgba(246, 214, 217, 0.45);
+  --control-hover-text: #702B4C;
+
+  --chat-user-bg: #702B4C;
+  --chat-user-text: #FFF8F3;
+  --chat-ai-bg: #FFFFFF;
+  --chat-ai-text: var(--text-primary);
+  --chat-ai-border: var(--border-card);
+
+  --upload-zone-bg: var(--bg-primary);
+  --upload-zone-border: var(--border-card);
+  --upload-zone-hover-bg: rgba(246, 214, 217, 0.25);
+  --upload-zone-hover-border: var(--color-primary-rose);
+}
+
+/* Dark Theme (Accessible WCAG AAA/AA High Contrast) */
+[data-theme="dark"] {
+  --color-blush-pink: #35212E;
+  --color-soft-pink: #422B3A;
+  --color-primary-rose: #FFAEC1;     /* Luminous light rose for dark backgrounds */
+  --color-burgundy: #FFF8F3;         /* Mapped to crisp off-white for dark mode headings */
+  --color-cream: #191217;
+  --color-sage: #A8CCA0;             /* Accessible light sage */
+  --color-deep-green: #B8DBB0;
+
+  --bg-primary: #191217;            /* Deep Plum Dark Background */
+  --bg-secondary: #221820;          /* Subtle Charcoal Plum */
+  --bg-card: #281D26;               /* Rich Dark Plum Card */
+  --bg-card-hover: #332531;
+  --bg-accent: #3A2635;
+  --bg-accent-soft: rgba(255, 174, 193, 0.16);
+  --bg-sage-soft: rgba(168, 204, 160, 0.16);
+
+  --text-primary: #FFF8F3;          /* High contrast off-white (15.8:1 ratio) */
+  --text-secondary: #DAC6D3;        /* Soft lavender-grey / blush mauve (9.5:1 ratio) */
+  --text-muted: #B8A2B1;            /* Accessible muted violet-grey (6.2:1 ratio) */
+  --text-accent: #FFAEC1;           /* Luminous soft blush (10.5:1 ratio) */
+  --text-rose: #FFAEC1;             /* Luminous light rose (10.5:1 ratio) */
+  --text-sage: #A8CCA0;             /* Accessible light sage (8.5:1 ratio) */
+
+  --border-subtle: rgba(255, 248, 243, 0.1);
+  --border-card: rgba(255, 174, 193, 0.22);
+  --border-focus: #FFAEC1;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 28px rgba(255, 174, 193, 0.25);
+
+  --badge-bg: #3D2636;
+  --badge-text: #FFAEC1;
+
+  --header-bg: rgba(25, 18, 23, 0.94);
+  --sidebar-bg: #1E1218;            /* Phase 11 Dark sidebar background */
+  --sidebar-border: rgba(255, 133, 162, 0.18);
+  --nav-item-bg: transparent;
+  --nav-item-text: #DAC6D3;
+  --nav-item-icon: #B8A2B1;
+  --nav-item-hover-bg: #35202B;      /* Phase 11 Hover background */
+  --nav-item-hover-text: #F8EDE7;   /* Phase 11 Primary text */
+  --nav-item-hover-icon: #FF85A2;   /* Phase 11 Active text/icon accent */
+  --nav-item-active-bg: #492735;     /* Phase 11 Active navigation background */
+  --nav-item-active-text: #F8EDE7;  /* Phase 11 Primary text */
+  --nav-item-active-icon: #FF85A2;  /* Phase 11 Active text/icon accent */
+  --nav-item-active-border: rgba(255, 133, 162, 0.35);
+
+  /* Universal Component Aliases */
+  --color-surface: var(--bg-card);
+  --color-bg: var(--bg-primary);
+  --border-color: var(--border-card);
+  --color-rose: #FFAEC1;
+  --input-bg: #221720;
+  --input-border: rgba(255, 174, 193, 0.25);
+
+  /* Interactive Control, Filter, Chat & Upload Tokens (Dark Mode) */
+  --control-active-bg: #492735;
+  --control-active-text: #F8EDE7;
+  --control-active-border: rgba(255, 133, 162, 0.45);
+  --control-bg: #281D26;
+  --control-hover-bg: #35202B;
+  --control-hover-text: #FF85A2;
+
+  --chat-user-bg: #492735;
+  --chat-user-text: #F8EDE7;
+  --chat-ai-bg: #281D26;
+  --chat-ai-text: var(--text-primary);
+  --chat-ai-border: rgba(255, 174, 193, 0.22);
+
+  --upload-zone-bg: #221820;
+  --upload-zone-border: rgba(255, 133, 162, 0.28);
+  --upload-zone-hover-bg: #35202B;
+  --upload-zone-hover-border: #FFAEC1;
+}

@@ -1,0 +1,619 @@
+export const translations = {
+  en: {
+    // Common
+    common: {
+      save: 'Save',
+      cancel: 'Cancel',
+      delete: 'Delete',
+      edit: 'Edit',
+      submitting: 'Saving...',
+      success: 'Saved successfully',
+      error: 'An error occurred',
+      loading: 'Loading...',
+      refresh: 'Refresh',
+      close: 'Close',
+      confirm: 'Confirm',
+      back: 'Back',
+      next: 'Next',
+      view: 'View',
+      download: 'Download',
+      filter: 'Filter',
+      all: 'All Time',
+      today: 'Today',
+      yes: 'Yes',
+      no: 'No',
+      required: 'Required',
+      optional: 'Optional',
+      status: 'Status',
+      actions: 'Actions',
+      date: 'Date',
+      notes: 'Notes'
+    },
+
+    // Sidebar & Navigation
+    nav: {
+      appName: 'Dhatri',
+      appSubname: 'धात्री',
+      tagline: 'Your Wellness Bestie',
+      dashboard: 'Dashboard',
+      journey: 'My Journey',
+      trackCycle: 'Track Cycle',
+      symptoms: 'Symptoms',
+      reports: 'Reports',
+      insights: 'Insights',
+      learn: 'Learn',
+      care: 'Care / Appointments',
+      goals: 'My Goals',
+      assistant: 'AI Wellness Assistant',
+      profile: 'Profile',
+      settings: 'Settings',
+      signOut: 'Sign Out'
+    },
+
+    // Dashboard
+    dashboard: {
+      welcome: 'Welcome back,',
+      livingHealthStory: 'Living Health Story',
+      focus: 'Focus: Overall hormonal balance and wellness',
+      viewDossier: '3-Min Doctor Dossier',
+      askAI: 'Ask Dhatri AI',
+      ambientPulse: 'DAILY AMBIENT PULSE',
+      baselinePrompt: 'How is your baseline today?',
+      currentFeeling: 'Current Feeling',
+      feelings: {
+        grounded: 'Grounded',
+        radiant: 'Radiant',
+        calm: 'Calm',
+        drained: 'Drained',
+        restless: 'Restless'
+      },
+      energyLevel: 'Energy Level',
+      sleepLastNight: 'Sleep Last Night',
+      waterToday: 'Water Today',
+      glasses: 'glasses',
+      pulseRecorded: 'Ambient pulse recorded for today.',
+      personalizedAlerts: 'Personalized Health Monitoring & Alert System',
+      activeObservation: 'Active Observation',
+      viewRecords: 'View Records',
+      quickActions: 'Quick Navigation'
+    },
+
+    // Journey
+    journey: {
+      title: 'My Health Journey & Timeline',
+      subtitle: 'Your continuous physiological narrative across menstrual rhythms, symptoms, and diagnostic checkpoints.',
+      cycleRhythms: 'Menstrual Rhythm Overview',
+      currentPhase: 'Current Inferred Phase',
+      biologicalSeason: 'Biological Season',
+      symptomTrajectory: 'Symptom Severity Timeline',
+      milestones: 'Longitudinal Milestones'
+    },
+
+    // Track Cycle
+    trackCycle: {
+      title: 'Menstrual Cycle Intelligence',
+      subtitle: 'Record bleeding days and pain patterns to personalize your hormonal phase forecast.',
+      recordPeriod: 'Log Period Flow',
+      startDate: 'Period Start Date',
+      endDate: 'Period End Date (Optional)',
+      flowIntensity: 'Flow Intensity',
+      flowLight: 'Light (Spotting)',
+      flowMedium: 'Medium (Standard)',
+      flowHeavy: 'Heavy (Frequent changes)',
+      painScore: 'Pain Severity Score',
+      associatedSymptoms: 'Associated Symptoms',
+      savePeriod: 'Save Period Entry',
+      periodHistory: 'Period History Logs',
+      estimatedNext: 'Estimated Next Period',
+      avgLength: 'Average Cycle Length',
+      avgDuration: 'Typical Period Duration',
+      days: 'days'
+    },
+
+    // Symptoms (Feature 3)
+    symptoms: {
+      title: 'Log & Contextualize Symptoms',
+      subtitle: 'Symptoms rarely happen in isolation. By logging severity alongside your cycle phase and lifestyle context, Dhatri identifies cross-system patterns over time.',
+      badge: 'Multi-Signal Symptom Journal',
+      recordSignal: "Record Today's Signal",
+      selectCommon: 'Select Common Symptom',
+      multiSelectPrompt: 'Select all symptoms experienced today (Multiple selection supported):',
+      selectedCount: '{count} symptoms selected',
+      clearAll: 'Clear All',
+      noSelectionPrompt: 'Click on one or more symptom buttons above to configure individual severity and duration.',
+      commonList: {
+        cramps: 'Pelvic Cramps',
+        fatigue: 'Low Energy / Fatigue',
+        migraine: 'Headache / Migraine',
+        bloating: 'Abdominal Bloating',
+        mood: 'Mood Shifts / Anxiety',
+        breast_tenderness: 'Breast Tenderness',
+        acne: 'Skin Flare-up / Acne',
+        hot_flash: 'Temperature Fluctuation'
+      },
+      dateOfOccurrence: 'Date of Occurrence',
+      individualDetailsHeading: 'Configure Individual Symptom Signals',
+      severityScore: 'Severity Score:',
+      severityLevels: {
+        1: 'Mild / Barely noticeable',
+        2: 'Mild-Moderate',
+        3: 'Noticeable, slightly limiting',
+        4: 'Moderate-Severe',
+        5: 'Severe / Disruptive'
+      },
+      durationLabel: 'Duration',
+      durations: {
+        fleeting: 'Fleeting (< 1 hour)',
+        moderate: 'Moderate (A few hours)',
+        all_day: 'Persistent (Most of the day)',
+        multi_day: 'Continuous (Multi-day)'
+      },
+      contextFactors: 'Context Factors (Select all that applied)',
+      contextTagsList: {
+        workStress: 'High Work Stress',
+        poorSleep: 'Poor Sleep (<6h)',
+        caffeine: 'Caffeine (>2 cups)',
+        workout: 'Intense Workout',
+        skippedMeal: 'Skipped Meal',
+        dehydrated: 'Dehydrated',
+        travel: 'Travel / Jetlag',
+        alcohol: 'Alcohol'
+      },
+      personalNotes: 'Personal Notes & Observation',
+      personalNotesPlaceholder: 'E.g., Started around 3pm after back-to-back meetings. Took chamomile tea and warm compress.',
+      saveBtn: 'Save to Health Timeline',
+      savingBtn: 'Recording Signals...',
+      saveSuccess: 'All selected symptoms successfully recorded and correlated with your health timeline.',
+      saveError: 'Please select at least one symptom to record.',
+      recentLogsTitle: 'Recent Symptom Logs',
+      noLogs: 'No symptoms recorded yet. Select symptoms above to start building your health pattern baseline.',
+      insightTitle: 'Correlated Pattern Observation',
+      phaseLabel: 'Current Inferred Phase:'
+    },
+
+    // Reports & Health Archive (Feature 1)
+    reports: {
+      title: 'Clinical Reports & Biomarkers',
+      subtitle: 'Transform isolated blood tests, ultrasound scans, and prescription PDFs into a continuous longitudinal biological history.',
+      badge: 'Structured Health Archive',
+      generateDossier: 'Generate Doctor Dossier (PDF)',
+      addDocument: 'Add Clinical Document',
+      dropzoneTitle: 'Select PDF or Diagnostic Scan',
+      dropzoneSubtitle: 'PDF, PNG, JPG up to 10 MB',
+      reportTitle: 'Report Title',
+      reportTitlePlaceholder: 'E.g., Complete Blood Count & Ferritin Panel',
+      reportDate: 'Report Date',
+      category: 'Category',
+      labCenter: 'Laboratory / Diagnostic Center',
+      saveDocument: 'Save Clinical Document',
+      timeFilters: {
+        all: 'All Time',
+        last3m: 'Last 3M',
+        last6m: 'Last 6M',
+        last1y: 'Last 1Y'
+      },
+      biomarkerDrift: 'Longitudinal Biomarker Drift',
+      biomarkerWindow: '18-Month Window',
+      noBiomarkers: 'Upload or enter blood test panels with Ferritin or TSH to activate trajectory graphing.',
+      recentUploads: 'Uploaded Diagnostic Reports',
+      viewExport: 'View / Export',
+      // Export Archive Buttons
+      exportSectionTitle: 'Health Archive & Portable Records',
+      exportSectionSubtitle: 'Export your authorized medical and wellness records for clinical consultation or personal backups.',
+      exportJsonBtn: 'Export Health Archive (JSON)',
+      exportPdfBtn: 'Download Health Report (PDF)',
+      exportSuccess: 'Export generated successfully.',
+      exportError: 'Failed to generate export file. Please try again.'
+    },
+
+    // Insights
+    insights: {
+      title: 'Health Intelligence & Pattern Synthesis',
+      subtitle: 'Multi-signal trend analysis across your diagnostic lab reports, symptom journals, and menstrual rhythm.',
+      badge: 'Continuous Synthesis',
+      primaryObservations: 'Primary Longitudinal Observations',
+      recommendations: 'Evidence-Based Consultation Preparation',
+      clinicalDisclaimer: 'Clinical Safety Notice: Dhatri synthesizes patterns for clinical collaboration and does not provide diagnosis or treatment plans.'
+    },
+
+    // Care & Appointments
+    care: {
+      title: 'Clinical Care & Appointments',
+      subtitle: 'Bridge personal health logs with professional medical evaluations. Schedule visits, build consultation checklists, and export clinical dossiers.',
+      badge: 'Continuum Care Navigation',
+      scheduleTitle: 'Schedule Clinical Consultation',
+      providerLabel: 'Healthcare Provider / Doctor Name *',
+      providerPlaceholder: 'E.g., Dr. Ananya Roy / Cloudnine Hospital',
+      specialtyLabel: 'Specialty *',
+      dateLabel: 'Consultation Date *',
+      timeLabel: 'Preferred Time Slot *',
+      reasonLabel: 'Primary Reason for Consultation *',
+      reasonPlaceholder: 'E.g., Investigate persistent low ferritin & luteal migraines',
+      notesLabel: 'Doctor Questions / Preparation Notes',
+      notesPlaceholder: 'Specific questions to ask during examination...',
+      bookVisitBtn: 'Book Visit',
+      bookingVisitBtn: 'Booking Visit...',
+      scheduledVisitsTitle: 'Scheduled Visits',
+      noUpcoming: 'No upcoming visits scheduled. Use the form or specialist directory below to book.',
+      cancelBtn: 'Cancel',
+      showCancelled: 'Show Cancelled',
+      hideCancelled: 'Hide Cancelled',
+      cancelledTitle: 'Cancelled Consultations',
+      cancelModalTitle: 'Cancel Scheduled Visit?',
+      cancelModalPrompt: 'Are you sure you want to cancel your scheduled consultation with {doctor} on {date} at {time}?',
+      cancelModalNotice: 'This consultation will be moved to your cancelled consultations archive and can be viewed anytime under "Show Cancelled".',
+      keepAppointmentBtn: 'Keep Appointment',
+      confirmCancelBtn: 'Confirm Cancellation',
+      cancellingBtn: 'Cancelling...',
+      checklistTitle: 'Clinical Visit Readiness Checklist',
+      specialistsTitle: "Women's Health Specialist Network"
+    },
+
+    // My Goals
+    goals: {
+      title: 'Health Goals & Daily Milestones',
+      subtitle: 'Track self-care targets, hydration routines, and sleep optimization goals.',
+      activeGoals: 'Active Goals',
+      addGoal: 'Create Goal',
+      targetLabel: 'Target:',
+      currentLabel: 'Current:',
+      updateProgress: 'Update Progress'
+    },
+
+    // AI Assistant
+    assistant: {
+      title: 'Dhatri AI Wellness Companion',
+      subtitle: 'Personalized health history synthesis & evidence-based medical education.',
+      badge: 'Bilingual (EN / HI)',
+      languageSelect: 'Language:',
+      authorizeContext: 'Authorize My Health Context',
+      resetConversation: 'Reset',
+      inputPlaceholder: 'Ask Dhatri about your symptoms, lab reports, or doctor questions...',
+      sendBtn: 'Send',
+      suggestedHeading: 'Suggested Questions:',
+      medicalProtocol: 'Medical Safety Protocol: Dhatri does not provide diagnoses or prescribe medications. Contextual observations are formulated for collaborative discussion with your healthcare professional.'
+    },
+
+    // Settings (Features 1 & 2)
+    settings: {
+      title: 'Application Settings',
+      subtitle: 'Control your visual interface, privacy parameters, language orientation, and data portability.',
+      badge: 'System & Privacy Configuration',
+      appearanceTitle: 'Appearance & Theme Mode',
+      lightMode: 'Light Mode',
+      lightModeDesc: 'Warm cream, blush pink, botanical sage',
+      darkMode: 'Dark Mode',
+      darkModeDesc: 'Deep plum (#191317), charcoal, muted rose',
+      systemAuto: 'System Auto',
+      systemAutoDesc: 'Synchronize with operating system',
+      languageTitle: 'Language & Communication',
+      langEnglish: 'English (Standard)',
+      langEnglishDesc: 'Clinical and educational terms in English',
+      langHindi: 'Hindi / Hinglish (हिंदी)',
+      langHindiDesc: 'Empathetic conversational tone in Hindi/Hinglish (सहज और समझने योग्य हिंदी)',
+      privacyTitle: 'Privacy & Consent Governance',
+      aiConsentTitle: 'Authorize AI Health Intelligence Synthesis',
+      aiConsentDesc: "Allows Dhatri's server-side LLM to formulate cross-system pattern correlations and prepare doctor consultation questions. No identifiable personal names are ever transmitted.",
+      ocrConsentTitle: 'Biomarker Digitization & Trend Parsing',
+      ocrConsentDesc: 'Extract numeric values from uploaded lab reports (Ferritin, TSH, Hb) into longitudinal trajectory charts.',
+      remindersTitle: 'Gentle Evening Wellness Pulse',
+      remindersDesc: 'Optional 10-second prompt to record hydration, sleep quality, and daily energy before bed.',
+      dataPortabilityTitle: 'Data Sovereignty & Portability',
+      dataPortabilityDesc: "Under Dhatri's privacy guarantee, your complete medical history belongs solely to you. You can export your full records in standard JSON or generate a multi-page clinical health PDF at any time.",
+      exportJsonBtn: 'Export Health Archive (JSON)',
+      downloadPdfBtn: 'Download Health Report (PDF)',
+      exportGenerating: 'Generating export...',
+      saveAllPreferences: 'Save All Preferences',
+      savedNotice: 'Preferences saved successfully.'
+    }
+  },
+
+  hi: {
+    // Common
+    common: {
+      save: 'सेव करें',
+      cancel: 'रद्द करें',
+      delete: 'हटाएं',
+      edit: 'बदलें',
+      submitting: 'सेव हो रहा है...',
+      success: 'सफलतापूर्वक सहेजा गया',
+      error: 'एक त्रुटि हुई',
+      loading: 'लोड हो रहा है...',
+      refresh: 'रीफ्रेश करें',
+      close: 'बंद करें',
+      confirm: 'पुष्टि करें',
+      back: 'वापस जाएं',
+      next: 'आगे बढ़ें',
+      view: 'देखें',
+      download: 'डाउनलोड करें',
+      filter: 'फ़िल्टर',
+      all: 'पूरा इतिहास',
+      today: 'आज',
+      yes: 'हाँ',
+      no: 'नहीं',
+      required: 'आवश्यक',
+      optional: 'वैकल्पिक',
+      status: 'स्थिति',
+      actions: 'कार्रवाई',
+      date: 'तारीख',
+      notes: 'नोट्स'
+    },
+
+    // Sidebar & Navigation
+    nav: {
+      appName: 'धात्री',
+      appSubname: 'Dhatri',
+      tagline: 'आपकी वेलनेस सहेली',
+      dashboard: 'डैशबोर्ड',
+      journey: 'मेरी यात्रा',
+      trackCycle: 'पीरियड साइकिल ट्रैक करें',
+      symptoms: 'लक्षण',
+      reports: 'रिपोर्ट्स',
+      insights: 'स्वास्थ्य से जुड़े संकेत',
+      learn: 'सीखें',
+      care: 'देखभाल / अपॉइंटमेंट',
+      goals: 'मेरे लक्ष्य',
+      assistant: 'AI वेलनेस साथी',
+      profile: 'प्रोफ़ाइल',
+      settings: 'सेटिंग्स',
+      signOut: 'साइन आउट'
+    },
+
+    // Dashboard
+    dashboard: {
+      welcome: 'वापसी पर स्वागत है,',
+      livingHealthStory: 'आपकी स्वास्थ्य कहानी',
+      focus: 'मुख्य ध्यान: समग्र हार्मोनल संतुलन और स्वास्थ्य',
+      viewDossier: '3-मिनट डॉक्टर डोज़ियर',
+      askAI: 'धात्री AI से पूछें',
+      ambientPulse: 'दैनिक वेलनेस पल्स',
+      baselinePrompt: 'आज आप कैसा महसूस कर रही हैं?',
+      currentFeeling: 'वर्तमान मनोदशा',
+      feelings: {
+        grounded: 'शांत व स्थिर',
+        radiant: 'ऊर्जावान',
+        calm: 'तनावमुक्त',
+        drained: 'थका हुआ',
+        restless: 'बेचैन'
+      },
+      energyLevel: 'ऊर्जा स्तर',
+      sleepLastNight: 'कल रात की नींद',
+      waterToday: 'आज का पानी',
+      glasses: 'गिलास',
+      pulseRecorded: 'आज का दैनिक चेक-इन सहेज लिया गया है।',
+      personalizedAlerts: 'व्यक्तिगत स्वास्थ्य निगरानी एवं अलर्ट सिस्टम',
+      activeObservation: 'सक्रिय स्वास्थ्य अवलोकन',
+      viewRecords: 'रिकॉर्ड देखें',
+      quickActions: 'त्वरित नेविगेशन'
+    },
+
+    // Journey
+    journey: {
+      title: 'मेरी स्वास्थ्य यात्रा और टाइमलाइन',
+      subtitle: 'आपके मासिक चक्र, लक्षणों और मेडिकल जांचों की एक निरंतर और समग्र स्वास्थ्य कहानी।',
+      cycleRhythms: 'मासिक चक्र का अवलोकन',
+      currentPhase: 'वर्तमान अनुमानित फ़ेज़',
+      biologicalSeason: 'जैविक चरण',
+      symptomTrajectory: 'लक्षणों की गंभीरता की टाइमलाइन',
+      milestones: 'महत्वपूर्ण स्वास्थ्य पड़ाव'
+    },
+
+    // Track Cycle
+    trackCycle: {
+      title: 'मासिक चक्र समझ और ट्रैकिंग',
+      subtitle: 'अपने ब्लीडिंग के दिन और दर्द के पैटर्न दर्ज करें ताकि हार्मोनल फ़ेज़ का सही अनुमान लगाया जा सके।',
+      recordPeriod: 'पीरियड दर्ज करें',
+      startDate: 'पीरियड शुरू होने की तारीख',
+      endDate: 'पीरियड समाप्त होने की तारीख (वैकल्पिक)',
+      flowIntensity: 'फ्लो की मात्रा',
+      flowLight: 'हल्का (स्पॉटिंग)',
+      flowMedium: 'सामान्य (मध्यम)',
+      flowHeavy: 'भारी (बार-बार पैड बदलना)',
+      painScore: 'दर्द की तीव्रता (1 से 5)',
+      associatedSymptoms: 'अनुभव किए गए लक्षण',
+      savePeriod: 'पीरियड एंट्री सेव करें',
+      periodHistory: 'पीरियड हिस्ट्री लॉग्स',
+      estimatedNext: 'अगले पीरियड की अनुमानित तारीख',
+      avgLength: 'औसत चक्र की अवधि',
+      avgDuration: 'पीरियड की औसत अवधि',
+      days: 'दिन'
+    },
+
+    // Symptoms (Feature 3)
+    symptoms: {
+      title: 'लक्षण दर्ज करें और समझें',
+      subtitle: 'लक्षण कभी अकेले नहीं होते। अपने चक्र के फ़ेज़ और जीवनशैली के संदर्भ के साथ लक्षण दर्ज करके धात्री समय के साथ महत्वपूर्ण पैटर्न पहचानती है।',
+      badge: 'मल्टी-सिग्नल लक्षण जर्नल',
+      recordSignal: 'आज के लक्षण दर्ज करें',
+      selectCommon: 'सामान्य लक्षण चुनें',
+      multiSelectPrompt: 'आज महसूस हुए सभी लक्षण चुनें (एक साथ कई लक्षण चुने जा सकते हैं):',
+      selectedCount: '{count} लक्षण चुने गए',
+      clearAll: 'सभी हटाएं',
+      noSelectionPrompt: 'प्रत्येक लक्षण की गंभीरता और अवधि सेट करने के लिए ऊपर दिए गए बटनों पर क्लिक करें।',
+      commonList: {
+        cramps: 'पेल्विक क्रैम्प्स (पेट के निचले हिस्से में दर्द)',
+        fatigue: 'कम ऊर्जा / थकान',
+        migraine: 'सिरदर्द / माइग्रेन',
+        bloating: 'पेट फूलना / ब्लोटिंग',
+        mood: 'मूड में बदलाव / घबराहट',
+        breast_tenderness: 'स्तनों में भारीपन व दर्द',
+        acne: 'मुंहासे / त्वचा संबंधी समस्या',
+        hot_flash: 'शरीर के तापमान में उतार-चढ़ाव'
+      },
+      dateOfOccurrence: 'लक्षण होने की तारीख',
+      individualDetailsHeading: 'चुने गए लक्षणों का अलग-अलग विवरण सेट करें',
+      severityScore: 'गंभीरता स्तर:',
+      severityLevels: {
+        1: 'हल्का / बमुश्किल महसूस होने वाला',
+        2: 'हल्का-मध्यम',
+        3: 'महसूस होने वाला, थोड़े काम प्रभावित',
+        4: 'मध्यम-गंभीर',
+        5: 'अत्यधिक गंभीर / दिनचर्या बाधित'
+      },
+      durationLabel: 'लक्षण की अवधि',
+      durations: {
+        fleeting: 'क्षणिक (1 घंटे से कम)',
+        moderate: 'मध्यम (कुछ घंटे)',
+        all_day: 'लगातार (दिन का अधिकांश हिस्सा)',
+        multi_day: 'कई दिनों तक लगातार'
+      },
+      contextFactors: 'संबंधित परिस्थितियां (जो भी लागू हों चुनें)',
+      contextTagsList: {
+        workStress: 'काम का अधिक तनाव',
+        poorSleep: 'कम नींद (6 घंटे से कम)',
+        caffeine: 'ज़्यादा चाय/कॉफ़ी (>2 कप)',
+        workout: 'कड़ा वर्कआउट',
+        skippedMeal: 'खाना छूटा',
+        dehydrated: 'पानी कम पिया',
+        travel: 'यात्रा / जेटलैग',
+        alcohol: 'अल्कोहल'
+      },
+      personalNotes: 'व्यक्तिगत नोट्स और अवलोकन',
+      personalNotesPlaceholder: 'उदा. दोपहर 3 बजे मीटिंग्स के बाद सिरदर्द शुरू हुआ। हर्बल चाय पी और आराम किया।',
+      saveBtn: 'हेल्थ टाइमलाइन में सेव करें',
+      savingBtn: 'लक्षण सहेजे जा रहे हैं...',
+      saveSuccess: 'चुने गए सभी लक्षण सफलतापूर्वक दर्ज किए गए और आपकी हेल्थ टाइमलाइन से जोड़े गए।',
+      saveError: 'कृपया कम से कम एक लक्षण चुनें।',
+      recentLogsTitle: 'हाल के लक्षण रिकॉर्ड्स',
+      noLogs: 'अभी तक कोई लक्षण दर्ज नहीं किया गया है। अपनी सेहत के पैटर्न जानने के लिए ऊपर लक्षण चुनें।',
+      insightTitle: 'स्वास्थ्य पैटर्न अवलोकन',
+      phaseLabel: 'वर्तमान अनुमानित फ़ेज़:'
+    },
+
+    // Reports & Health Archive (Feature 1)
+    reports: {
+      title: 'क्लिनिकल रिपोर्ट्स और बायोमार्कर्स',
+      subtitle: 'अलग-थलग पड़ी ब्लड टेस्ट, अल्ट्रासाउंड और प्रिस्क्रिप्शन रिपोर्ट्स को एक निरंतर मेडिकल हिस्ट्री में बदलें।',
+      badge: 'सुरक्षित स्वास्थ्य अभिलेखागार',
+      generateDossier: 'डॉक्टर डोज़ियर बनाएं (PDF)',
+      addDocument: 'क्लिनिकल रिपोर्ट जोड़ें',
+      dropzoneTitle: 'PDF या स्कैन की गई रिपोर्ट चुनें',
+      dropzoneSubtitle: 'PDF, PNG, JPG (अधिकतम 10 MB)',
+      reportTitle: 'रिपोर्ट का नाम',
+      reportTitlePlaceholder: 'उदा. कम्पलीट ब्लड काउंट और फेरिटिन पैनल',
+      reportDate: 'रिपोर्ट की तारीख',
+      category: 'श्रेणी',
+      labCenter: 'लैब / डायग्नोस्टिक सेंटर',
+      saveDocument: 'रिपोर्ट सेव करें',
+      timeFilters: {
+        all: 'पूरा इतिहास',
+        last3m: 'पिछले 3 महीने',
+        last6m: 'पिछले 6 महीने',
+        last1y: 'पिछला 1 वर्ष'
+      },
+      biomarkerDrift: 'लॉन्गिट्यूडिनल बायोमार्कर ट्रेंड्स',
+      biomarkerWindow: '18-महीने की विंडो',
+      noBiomarkers: 'फेरिटिन या TSH वाले ब्लड टेस्ट अपलोड करें ताकि समय के साथ ग्राफ़ देखा जा सके।',
+      recentUploads: 'अपलोड की गई रिपोर्ट्स',
+      viewExport: 'देखें / एक्सपोर्ट करें',
+      // Export Archive Buttons
+      exportSectionTitle: 'हेल्थ रिकॉर्ड एक्सपोर्ट एवं डेटा पोर्टेबिलिटी',
+      exportSectionSubtitle: 'डॉक्टर से परामर्श या बैकअप के लिए अपने संपूर्ण अधिकृत स्वास्थ्य रिकॉर्ड्स एक्सपोर्ट करें।',
+      exportJsonBtn: 'हेल्थ रिकॉर्ड एक्सपोर्ट करें (JSON)',
+      exportPdfBtn: 'हेल्थ रिपोर्ट डाउनलोड करें (PDF)',
+      exportSuccess: 'एक्सपोर्ट सफलतापूर्वक तैयार हो गया।',
+      exportError: 'एक्सपोर्ट फ़ाइल बनाने में त्रुटि हुई। कृपया पुनः प्रयास करें।'
+    },
+
+    // Insights
+    insights: {
+      title: 'स्वास्थ्य से जुड़े संकेत और पैटर्न समझ',
+      subtitle: 'आपकी लैब रिपोर्ट्स, लक्षणों और पीरियड चक्र का स्वचालित क्रॉस-सिग्नल विश्लेषण।',
+      badge: 'निरंतर स्वास्थ्य समझ',
+      primaryObservations: 'मुख्य दीर्घकालिक अवलोकन',
+      recommendations: 'डॉक्टर से परामर्श के लिए तैयारी',
+      clinicalDisclaimer: 'चिकित्सा सुरक्षा सूचना: धात्री केवल डॉक्टर से चर्चा के लिए पैटर्न तैयार करती है, यह कोई बीमारी का निदान या उपचार नहीं है।'
+    },
+
+    // Care & Appointments
+    care: {
+      title: 'देखभाल और अपॉइंटमेंट',
+      subtitle: 'अपनी निजी स्वास्थ्य जानकारियों को विशेषज्ञ डॉक्टर की सलाह से जोड़ें। विज़िट शेड्यूल करें और क्लिनिकल डोज़ियर एक्सपोर्ट करें।',
+      badge: 'कंटीन्यूम केयर नेविगेशन',
+      scheduleTitle: 'क्लिनिकल परामर्श शेड्यूल करें',
+      providerLabel: 'डॉक्टर / क्लिनिक का नाम *',
+      providerPlaceholder: 'उदा. डॉ. अनन्या रॉय / क्लाउडनाइन हॉस्पिटल',
+      specialtyLabel: 'विशेषज्ञता *',
+      dateLabel: 'परामर्श की तारीख *',
+      timeLabel: 'पसंदीदा समय स्लॉट *',
+      reasonLabel: 'परामर्श का मुख्य कारण *',
+      reasonPlaceholder: 'उदा. कम फेरिटिन और ल्यूटियल फ़ेज़ माइग्रेन की जांच',
+      notesLabel: 'डॉक्टर से पूछने वाले सवाल / तैयारी नोट्स',
+      notesPlaceholder: 'जांच के दौरान पूछे जाने वाले विशेष सवाल...',
+      bookVisitBtn: 'अपॉइंटमेंट बुक करें',
+      bookingVisitBtn: 'बुक हो रहा है...',
+      scheduledVisitsTitle: 'शेड्यूल की गई मुलाक़ातें',
+      noUpcoming: 'कोई आगामी अपॉइंटमेंट नहीं है। नीचे दिए गए फ़ॉर्म से बुक करें।',
+      cancelBtn: 'रद्द करें',
+      showCancelled: 'रद्द किए गए देखें',
+      hideCancelled: 'छिपाएं',
+      cancelledTitle: 'रद्द किए गए परामर्श',
+      cancelModalTitle: 'क्या आप अपॉइंटमेंट रद्द करना चाहती हैं?',
+      cancelModalPrompt: 'क्या आप निश्चित रूप से {doctor} के साथ {date} को {time} पर तय अपॉइंटमेंट रद्द करना चाहती हैं?',
+      cancelModalNotice: 'यह परामर्श आपके रद्द किए गए रिकॉर्ड्स में सहेज लिया जाएगा और इसे कभी भी "रद्द किए गए देखें" में देखा जा सकता है।',
+      keepAppointmentBtn: 'अपॉइंटमेंट बनाए रखें',
+      confirmCancelBtn: 'रद्दीकरण की पुष्टि करें',
+      cancellingBtn: 'रद्द हो रहा है...',
+      checklistTitle: 'क्लिनिकल विज़िट तैयारी चेकलिस्ट',
+      specialistsTitle: 'महिला स्वास्थ्य विशेषज्ञ नेटवर्क'
+    },
+
+    // My Goals
+    goals: {
+      title: 'स्वास्थ्य लक्ष्य और दैनिक आदतें',
+      subtitle: 'अपनी सेल्फ़-केयर दिनचर्या, पानी पीने की आदत और नींद के लक्ष्यों को ट्रैक करें।',
+      activeGoals: 'सक्रिय लक्ष्य',
+      addGoal: 'नया लक्ष्य जोड़ें',
+      targetLabel: 'लक्ष्य:',
+      currentLabel: 'वर्तमान स्थिति:',
+      updateProgress: 'प्रगति अपडेट करें'
+    },
+
+    // AI Assistant
+    assistant: {
+      title: 'धात्री AI वेलनेस साथी',
+      subtitle: 'व्यक्तिगत स्वास्थ्य इतिहास की समझ और साक्ष्य-आधारित स्वास्थ्य जानकारी।',
+      badge: 'द्विभाषी (हिंदी / English)',
+      languageSelect: 'भाषा:',
+      authorizeContext: 'मेरी स्वास्थ्य जानकारी उपयोग करने की अनुमति दें',
+      resetConversation: 'नई बातचीत',
+      inputPlaceholder: 'अपने लक्षणों, लैब रिपोर्ट्स या डॉक्टर से जुड़े सवाल पूछें...',
+      sendBtn: 'भेजें',
+      suggestedHeading: 'सुझाए गए प्रश्न:',
+      medicalProtocol: 'चिकित्सा सुरक्षा प्रोटोकॉल: धात्री कोई मेडिकल डायग्नोसिस या दवा नहीं देती है। यहाँ दी गई जानकारी डॉक्टर से परामर्श की तैयारी के लिए है।'
+    },
+
+    // Settings (Features 1 & 2)
+    settings: {
+      title: 'सेटिंग्स एवं प्राथमिकताएं',
+      subtitle: 'इंटरफ़ेस का रूप-रंग, गोपनीयता विकल्प, भाषा प्राथमिकता और डेटा एक्सपोर्ट नियंत्रित करें।',
+      badge: 'सिस्टम एवं प्राइवेसी कॉन्फ़िगरेशन',
+      appearanceTitle: 'थीम और रूप-रंग',
+      lightMode: 'लाइट मोड',
+      lightModeDesc: 'वार्म क्रीम, ब्लश पिंक और सेज ग्रीन',
+      darkMode: 'डार्क मोड',
+      darkModeDesc: 'डीप प्लम (#191317), चारकोल, म्यूटेड रोज़',
+      systemAuto: 'सिस्टम ऑटो',
+      systemAutoDesc: 'ऑपरेटिंग सिस्टम की थीम के अनुसार',
+      languageTitle: 'भाषा एवं संवाद (Language)',
+      langEnglish: 'English (Standard)',
+      langEnglishDesc: 'Clinical and educational terms in English',
+      langHindi: 'हिंदी / Hinglish (हिंदी)',
+      langHindiDesc: 'सहज, आत्मीय और समझने योग्य हिंदी/हिंग्लिश संवाद',
+      privacyTitle: 'गोपनीयता और क्लिनिकल सहमति',
+      aiConsentTitle: 'AI स्वास्थ्य समझ एवं विश्लेषण की अनुमति',
+      aiConsentDesc: 'धात्री के AI मॉडल को स्वास्थ्य पैटर्न पहचानने और डॉक्टर के लिए सवाल तैयार करने की अनुमति देता है। आपका नाम कभी शेयर नहीं किया जाता।',
+      ocrConsentTitle: 'बायोमार्कर और रिपोर्ट डिजिटलीकरण',
+      ocrConsentDesc: 'अपलोड की गई रिपोर्ट्स (फेरिटिन, TSH, हीमोग्लोबिन) से वैल्यूज निकाल कर ग्राफ़ बनाने की अनुमति।',
+      remindersTitle: 'शाम का सौम्य वेलनेस संदेश',
+      remindersDesc: 'सोने से पहले पानी, नींद और ऊर्जा स्तर नोट करने का एक छोटा रिमाइंडर।',
+      dataPortabilityTitle: 'डेटा संप्रभुता एवं पोर्टेबिलिटी',
+      dataPortabilityDesc: 'धात्री की प्राइवेसी गारंटी के तहत आपका मेडिकल डेटा सिर्फ़ आपका है। आप कभी भी अपना पूरा डेटा JSON फ़ॉर्मेट में डाउनलोड कर सकती हैं या विस्तृत क्लिनिकल PDF रिपोर्ट प्राप्त कर सकती हैं।',
+      exportJsonBtn: 'हेल्थ रिकॉर्ड एक्सपोर्ट करें (JSON)',
+      downloadPdfBtn: 'हेल्थ रिपोर्ट डाउनलोड करें (PDF)',
+      exportGenerating: 'फ़ाइल तैयार की जा रही है...',
+      saveAllPreferences: 'सभी सेटिंग्स सहेजें',
+      savedNotice: 'प्राथमिकताएं सफलतापूर्वक सहेज ली गईं।'
+    }
+  }
+};

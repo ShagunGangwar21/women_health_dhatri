@@ -1,0 +1,15 @@
+{
+  "name": "dhatri-wellness",
+  "version": "1.0.0",
+  "description": "Dhatri (धात्री) — Your Wellness Bestie: Complete Women's Health & Intelligence Platform",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:server": "node server/src/server.js",
+    "dev:client": "node client/node_modules/vite/bin/vite.js client --port 3000 --host",
+    "dev": "node start-dev.js",
+    "build": "node client/node_modules/vite/bin/vite.js build client",
+    "start": "node server/src/server.js",
+    "seed": "node server/src/utils/seed.js"
+  }
+}

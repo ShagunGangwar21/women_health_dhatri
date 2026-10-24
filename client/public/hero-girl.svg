@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDF0F3" />
+      <stop offset="70%" stop-color="#FCE6EB" />
+      <stop offset="100%" stop-color="#F7D4DD" />
+    </radialGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5A1E3C" />
+      <stop offset="45%" stop-color="#702B4C" />
+      <stop offset="100%" stop-color="#8C355F" />
+    </linearGradient>
+    <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFA8BD" />
+      <stop offset="60%" stop-color="#E86588" />
+      <stop offset="100%" stop-color="#D94E74" />
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9BB496" />
+      <stop offset="100%" stop-color="#608269" />
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDE8DB" />
+      <stop offset="100%" stop-color="#F8D4C2" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#702B4C" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Background Soft Aura -->
+  <rect width="600" height="600" rx="36" fill="url(#bgGlow)" />
+  <circle cx="300" cy="300" r="230" fill="#FFFDFD" opacity="0.6" filter="url(#softGlow)" />
+
+  <!-- Botanical Foliage: Background Leaves (Left & Right) -->
+  <g id="botanical-bg" opacity="0.9">
+    <!-- Left Top Fern / Palm Leaf -->
+    <path d="M 120 220 Q 90 140 180 110 Q 150 170 120 220 Z" fill="url(#leafGrad)" />
+    <path d="M 130 180 Q 70 160 100 130 Q 120 155 130 180 Z" fill="#75987E" />
+    <path d="M 145 150 Q 110 100 150 90 Q 150 125 145 150 Z" fill="#88A88E" />
+    <path d="M 170 130 Q 160 60 210 70 Q 185 105 170 130 Z" fill="url(#leafGrad)" />
+    
+    <!-- Right Top Botanical Leaves -->
+    <path d="M 470 230 Q 520 150 430 110 Q 450 170 470 230 Z" fill="url(#leafGrad)" />
+    <path d="M 465 190 Q 535 170 510 140 Q 485 165 465 190 Z" fill="#75987E" />
+    <path d="M 450 155 Q 495 105 455 90 Q 450 125 450 155 Z" fill="#88A88E" />
+    <path d="M 425 130 Q 440 60 390 70 Q 410 105 425 130 Z" fill="url(#leafGrad)" />
+
+    <!-- Delicate Botanical Sprigs & Rosebuds -->
+    <circle cx="160" cy="180" r="7" fill="#FFAEC1" />
+    <circle cx="190" cy="140" r="5" fill="#E86588" />
+    <circle cx="440" cy="180" r="7" fill="#FFAEC1" />
+    <circle cx="410" cy="140" r="5" fill="#E86588" />
+  </g>
+
+  <!-- Flowing Burgundy Hair (Back Layer) -->
+  <path d="M 210 240 C 160 260, 140 370, 160 480 C 175 560, 240 590, 260 590 C 230 510, 210 420, 225 330 Z" fill="url(#hairGrad)" filter="url(#shadow)" />
+  <path d="M 390 240 C 440 260, 460 370, 440 480 C 425 560, 360 590, 340 590 C 370 510, 390 420, 375 330 Z" fill="url(#hairGrad)" filter="url(#shadow)" />
+
+  <!-- Girl Shoulders & Dress / Robe -->
+  <path d="M 220 440 C 200 480, 170 550, 160 600 L 440 600 C 430 550, 400 480, 380 440 Z" fill="#FCE9ED" />
+  <!-- Elegant Burgundy / Rose Collar Accents -->
+  <path d="M 220 440 Q 300 500 380 440 Q 300 470 220 440 Z" fill="#F8C5CE" />
+
+  <!-- Neck & Graceful Throat -->
+  <path d="M 275 330 L 275 430 Q 300 440 325 430 L 325 330 Z" fill="url(#skinGrad)" />
+
+  <!-- Serene Face -->
+  <path d="M 235 240 C 235 170, 365 170, 365 240 C 365 315, 335 375, 300 375 C 265 375, 235 315, 235 240 Z" fill="url(#skinGrad)" filter="url(#shadow)" />
+
+  <!-- Serene Closed Eyes (Eyelashes & peaceful curve) -->
+  <!-- Left Eye -->
+  <path d="M 262 255 Q 275 267 288 255" fill="none" stroke="#5A1E3C" stroke-width="2.8" stroke-linecap="round" />
+  <path d="M 268 262 L 264 268" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M 275 264 L 275 271" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M 282 262 L 286 268" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <!-- Left Eyebrow -->
+  <path d="M 260 240 Q 275 233 290 238" fill="none" stroke="#702B4C" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+
+  <!-- Right Eye -->
+  <path d="M 312 255 Q 325 267 338 255" fill="none" stroke="#5A1E3C" stroke-width="2.8" stroke-linecap="round" />
+  <path d="M 318 262 L 314 268" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M 325 264 L 325 271" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <path d="M 332 262 L 336 268" stroke="#5A1E3C" stroke-width="1.8" stroke-linecap="round" />
+  <!-- Right Eyebrow -->
+  <path d="M 310 238 Q 325 233 340 240" fill="none" stroke="#702B4C" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+
+  <!-- Soft Blush on Cheeks -->
+  <ellipse cx="258" cy="275" rx="14" ry="8" fill="#FFAEC1" opacity="0.5" />
+  <ellipse cx="342" cy="275" rx="14" ry="8" fill="#FFAEC1" opacity="0.5" />
+
+  <!-- Nose & Gentle Lips -->
+  <path d="M 297 265 Q 300 282 295 285" fill="none" stroke="#E39D88" stroke-width="2" stroke-linecap="round" />
+  <!-- Smile -->
+  <path d="M 288 310 Q 300 322 312 310" fill="none" stroke="#C74E72" stroke-width="2.8" stroke-linecap="round" />
+  <path d="M 292 314 Q 300 320 308 314" fill="#E87696" opacity="0.4" />
+
+  <!-- Long Flowing Burgundy Hair (Front Tresses) -->
+  <!-- Top Crown of Hair -->
+  <path d="M 225 210 C 220 120, 380 120, 375 210 C 360 170, 325 160, 300 165 C 275 160, 240 170, 225 210 Z" fill="url(#hairGrad)" />
+  <!-- Left Front Locks -->
+  <path d="M 235 200 C 215 250, 210 320, 230 400 C 240 440, 255 490, 245 540 C 235 480, 225 430, 215 370 C 205 310, 210 250, 235 200 Z" fill="url(#hairGrad)" filter="url(#shadow)" />
+  <!-- Right Front Locks -->
+  <path d="M 365 200 C 385 250, 390 320, 370 400 C 360 440, 345 490, 355 540 C 365 480, 375 430, 385 370 C 395 310, 390 250, 365 200 Z" fill="url(#hairGrad)" filter="url(#shadow)" />
+
+  <!-- Delicate Floral / Leaf Hair Crown -->
+  <g id="hair-accessories">
+    <circle cx="250" cy="175" r="5" fill="#FFAEC1" />
+    <circle cx="265" cy="165" r="6" fill="#F8C5CE" />
+    <circle cx="282" cy="160" r="5" fill="#FFFFFF" />
+    <circle cx="318" cy="160" r="5" fill="#FFFFFF" />
+    <circle cx="335" cy="165" r="6" fill="#F8C5CE" />
+    <circle cx="350" cy="175" r="5" fill="#FFAEC1" />
+    <path d="M 240 185 Q 260 165 290 160 Q 320 160 360 185" fill="none" stroke="#75987E" stroke-width="2.5" stroke-dasharray="1 6" stroke-linecap="round" />
+  </g>
+
+  <!-- Central Glowing Pink Heart Held with Serene Hands -->
+  <g id="pink-heart" filter="url(#softGlow)">
+    <!-- Heart Aura / Glow -->
+    <path d="M 300 440 C 300 440, 250 395, 250 360 C 250 335, 272 320, 295 335 Q 300 340 305 335 C 328 320, 350 335, 350 360 C 350 395, 300 440, 300 440 Z" fill="#FFC9D6" opacity="0.5" transform="scale(1.15) translate(-39, -55)" />
+    <!-- Heart Core -->
+    <path d="M 300 440 C 300 440, 250 395, 250 360 C 250 335, 272 320, 295 335 Q 300 340 305 335 C 328 320, 350 335, 350 360 C 350 395, 300 440, 300 440 Z" fill="url(#heartGrad)" />
+    <!-- Heart Shimmer / Highlight -->
+    <path d="M 265 350 C 265 340, 275 335, 285 340 C 275 345, 268 355, 265 365 Z" fill="#FFFFFF" opacity="0.75" />
+  </g>
+
+  <!-- Gentle Caring Hands Cradling the Heart -->
+  <g id="hands" opacity="0.95">
+    <!-- Left Hand -->
+    <path d="M 215 480 C 235 440, 260 410, 280 405 C 275 420, 265 440, 240 470 Z" fill="url(#skinGrad)" />
+    <!-- Right Hand -->
+    <path d="M 385 480 C 365 440, 340 410, 320 405 C 325 420, 335 440, 360 470 Z" fill="url(#skinGrad)" />
+  </g>
+
+  <!-- Foreground Botanical Leaves Framing the Base (Lush Botanical Sanctuary) -->
+  <g id="foreground-botanicals">
+    <!-- Left Arching Botanical Branch -->
+    <path d="M 60 580 Q 140 480 230 450" fill="none" stroke="#4F725D" stroke-width="3" stroke-linecap="round" />
+    <path d="M 110 520 Q 90 470 130 460 Q 130 495 110 520 Z" fill="url(#leafGrad)" />
+    <path d="M 150 490 Q 140 440 180 435 Q 175 470 150 490 Z" fill="#88A88E" />
+    <path d="M 190 470 Q 195 420 230 425 Q 220 455 190 470 Z" fill="url(#leafGrad)" />
+    <path d="M 220 455 Q 235 425 255 435 Q 245 455 220 455 Z" fill="#75987E" />
+
+    <!-- Right Arching Botanical Branch -->
+    <path d="M 540 580 Q 460 480 370 450" fill="none" stroke="#4F725D" stroke-width="3" stroke-linecap="round" />
+    <path d="M 490 520 Q 510 470 470 460 Q 470 495 490 520 Z" fill="url(#leafGrad)" />
+    <path d="M 450 490 Q 460 440 420 435 Q 425 470 450 490 Z" fill="#88A88E" />
+    <path d="M 410 470 Q 405 420 370 425 Q 380 455 410 470 Z" fill="url(#leafGrad)" />
+    <path d="M 380 455 Q 365 425 345 435 Q 355 455 380 455 Z" fill="#75987E" />
+
+    <!-- Soft Golden / Pink Spores & Petals (Micro-details) -->
+    <circle cx="160" cy="440" r="3.5" fill="#FFAEC1" />
+    <circle cx="440" cy="440" r="3.5" fill="#FFAEC1" />
+    <circle cx="210" cy="390" r="2.5" fill="#E86588" opacity="0.8" />
+    <circle cx="390" cy="390" r="2.5" fill="#E86588" opacity="0.8" />
+  </g>
+</svg>
