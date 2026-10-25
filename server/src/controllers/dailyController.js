@@ -39,7 +39,7 @@ export const getDailyLogs = async (req, res) => {
 export const saveDailyCheckIn = async (req, res) => {
   try {
     const userId = req.user._id || req.user.id;
-    const { date, mood, moodScore, sleepHours, sleepQuality, energyLevel, hydrationGlasses, notes } = req.body;
+    const { date, mood, moodScore, sleepHours, sleepQuality, energyLevel, hydrationGlasses, nutritionScore, nutritionNote, notes } = req.body;
 
     const targetDate = date || new Date().toISOString().split('T')[0];
 
@@ -54,6 +54,8 @@ export const saveDailyCheckIn = async (req, res) => {
           sleepQuality: sleepQuality || 'restful',
           energyLevel: energyLevel !== undefined ? Number(energyLevel) : 3,
           hydrationGlasses: hydrationGlasses !== undefined ? Number(hydrationGlasses) : 6,
+          nutritionScore: nutritionScore !== undefined ? Number(nutritionScore) : 3,
+          nutritionNote: nutritionNote || '',
           notes: notes || ''
         },
         { upsert: true, new: true }
@@ -68,6 +70,8 @@ export const saveDailyCheckIn = async (req, res) => {
           sleepQuality: sleepQuality || 'restful',
           energyLevel: energyLevel !== undefined ? Number(energyLevel) : 3,
           hydrationGlasses: hydrationGlasses !== undefined ? Number(hydrationGlasses) : 6,
+          nutritionScore: nutritionScore !== undefined ? Number(nutritionScore) : 3,
+          nutritionNote: nutritionNote || '',
           notes: notes || ''
         });
       } else {
@@ -80,6 +84,8 @@ export const saveDailyCheckIn = async (req, res) => {
           sleepQuality: sleepQuality || 'restful',
           energyLevel: energyLevel !== undefined ? Number(energyLevel) : 3,
           hydrationGlasses: hydrationGlasses !== undefined ? Number(hydrationGlasses) : 6,
+          nutritionScore: nutritionScore !== undefined ? Number(nutritionScore) : 3,
+          nutritionNote: nutritionNote || '',
           notes: notes || ''
         });
       }

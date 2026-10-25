@@ -298,6 +298,24 @@ export const HealthDataProvider = ({ children }) => {
   const reports = reportData?.reports || [];
   const currentCyclePhase = cycleData?.estimates?.currentPhase || 'follicular';
 
+  // Actions — Trends & Doctor Dossier
+  const fetchTrends = useCallback(async (params = {}) => {
+    const query = new URLSearchParams(params).toString();
+    const res = await authFetch(`/api/symptoms/trends?${query}`);
+    if (res?.ok) {
+      return await res.json();
+    }
+    return null;
+  }, [authFetch]);
+
+  const fetchDoctorSummary = useCallback(async () => {
+    const res = await authFetch('/api/symptoms/doctor-summary');
+    if (res?.ok) {
+      return await res.json();
+    }
+    return null;
+  }, [authFetch]);
+
   return (
     <HealthDataContext.Provider value={{
       loading,
@@ -331,7 +349,9 @@ export const HealthDataProvider = ({ children }) => {
       addGoal,
       updateGoal,
       updateGoalProgress,
-      deleteGoal
+      deleteGoal,
+      fetchTrends,
+      fetchDoctorSummary
     }}>
       {children}
     </HealthDataContext.Provider>

@@ -18,6 +18,7 @@ export default function Sidebar() {
     { label: t('nav.journey', {}, 'My Journey'), path: '/app/journey', icon: 'journey' },
     { label: t('nav.trackCycle', {}, 'Track Cycle'), path: '/app/cycle', icon: 'calendar', badge: user?.isMenstruating === false ? (isHindi ? 'छूट' : 'Opted out') : null },
     { label: t('nav.symptoms', {}, 'Symptoms'), path: '/app/symptoms', icon: 'symptom' },
+    { label: t('nav.trends', {}, 'Health Trends'), path: '/app/trends', icon: 'activity', badge: 'Trends' },
     { label: t('nav.reports', {}, 'Reports'), path: '/app/reports', icon: 'report' },
     { label: t('nav.insights', {}, 'Insights'), path: '/app/insights', icon: 'insight', highlight: true },
     { label: t('nav.learn', {}, 'Learn'), path: '/app/learn', icon: 'learn' },

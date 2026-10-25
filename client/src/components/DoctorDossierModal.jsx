@@ -1,8 +1,56 @@
-import React from 'react';
-import Icon from './Icon.jsx';
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
+import Icon from './Icon';
 
-export default function DoctorDossierModal({ isOpen, onClose, summary }) {
-  if (!isOpen || !summary) return null;
+export default function DoctorDossierModal({ isOpen, onClose, onFetchDossier }) {
+  const { language, formatDate } = useLanguage();
+  const [dossier, setDossier] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setLoading(true);
+      onFetchDossier()
+        .then(res => {
+          if (res?.dossier) setDossier(res.dossier);
+        })
+        .finally(() => setLoading(false));
+    }
+  }, [isOpen, onFetchDossier]);
+
+  if (!isOpen) return null;
+
+  const handleCopyText = () => {
+    if (!dossier) return;
+    const text = [
+      `=== DHATRI HEALTH SUMMARY — 3-MINUTE DOCTOR DOSSIER ===`,
+      `Patient: ${dossier.patientInfo.name} | Biological Season: ${dossier.patientInfo.biologicalSeason}`,
+      `Generated: ${new Date(dossier.generatedAt).toLocaleDateString()}`,
+      `Cycle Status: ${dossier.cycleSummary.lastPeriodDate} | Flow: ${dossier.cycleSummary.flowIntensity} | Pain: ${dossier.cycleSummary.painLevel}`,
+      ``,
+      `--- PRIMARY COMPLAINTS & SYMPTOM TRENDS (Last 14 Days) ---`,
+      ...(dossier.primaryComplaints.map(c => `• ${c.category}: Logged ${c.frequencyDays} days | Avg Severity: ${c.avgSeverity}/5 (Peak: ${c.maxSeverity}/5)${c.patientNotes.length ? ` | Notes: "${c.patientNotes.join(', ')}"` : ''}`)),
+      ``,
+      `--- LIFESTYLE & SLEEP CORRELATION ---`,
+      `• Avg Sleep: ${dossier.lifestyleBaseline.averageSleepHours} hrs/night | Energy: ${dossier.lifestyleBaseline.averageEnergyLevel}`,
+      ``,
+      `--- CLINICAL SAFETY FLAGS ---`,
+      ...(dossier.clinicalAlerts.map(a => `• [${a.level.toUpperCase()}]: ${a.trigger}`)),
+      ``,
+      `--- KEY BIOMARKERS (Diagnostic Reports) ---`,
+      ...(dossier.biomarkers.map(b => `• ${b.name}: ${b.value} ${b.unit || ''} (Ref: ${b.referenceRange || 'N/A'}, Date: ${b.reportDate})`)),
+      ``,
+      `--- PATIENT ADVOCACY QUESTIONS ---`,
+      ...(dossier.suggestedQuestionsForDoctor.map((q, i) => `${i + 1}. ${q}`)),
+      ``,
+      `DISCLAIMER: Self-reported longitudinal health history recorded via Dhatri. Not a formal diagnosis.`
+    ].join('\n');
+
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const handlePrint = () => {
     window.print();
@@ -11,164 +59,194 @@ export default function DoctorDossierModal({ isOpen, onClose, summary }) {
   return (
     <div style={{
       position: 'fixed',
-      inset: 0,
-      zIndex: 2000,
-      backgroundColor: 'rgba(0,0,0,0.6)',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.65)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      zIndex: 1000,
       padding: '1.5rem',
-      overflowY: 'auto'
+      backdropFilter: 'blur(4px)'
     }}>
-      <div style={{
-        backgroundColor: 'var(--bg-card)',
-        borderRadius: 'var(--radius-lg)',
-        maxWidth: '850px',
+      <div className="dhatri-card" style={{
+        maxWidth: '720px',
         width: '100%',
         maxHeight: '90vh',
         overflowY: 'auto',
-        boxShadow: 'var(--shadow-lg)',
-        border: '1px solid var(--border-card)',
-        display: 'flex',
-        flexDirection: 'column'
-      }} className="animate-fade-in">
-        {/* Header Bar */}
-        <div style={{
-          padding: '1.25rem 1.75rem',
-          borderBottom: '1px solid var(--border-subtle)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          backgroundColor: 'var(--bg-secondary)'
-        }} className="no-print">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '1.2rem' }}>📋</span>
-            <h3 style={{ fontSize: '1.2rem' }}>Dhatri 3-Minute Clinical Consultation Dossier</h3>
+        padding: '2rem',
+        boxShadow: 'var(--shadow-xl)',
+        position: 'relative'
+      }}>
+        {/* Modal Header */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1rem' }}>
+          <div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <span className="pill-badge pill-rose">📋 Clinical Dossier</span>
+              <span className="pill-badge pill-sage">SBAR Format</span>
+            </div>
+            <h2 style={{ fontSize: '1.35rem', color: 'var(--color-burgundy)', margin: '0.4rem 0 0' }}>
+              3-Minute Doctor Consultation Summary
+            </h2>
           </div>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <button onClick={handlePrint} className="btn btn-primary" style={{ padding: '0.5rem 1.2rem', fontSize: '0.85rem' }}>
-              <Icon name="print" size={16} /> Print / Save PDF
-            </button>
-            <button onClick={onClose} className="btn-icon" style={{ width: '32px', height: '32px' }}>
-              ✕
-            </button>
-          </div>
+          <button
+            onClick={onClose}
+            className="btn-icon"
+            style={{ width: '36px', height: '36px' }}
+            title="Close"
+          >
+            ✕
+          </button>
         </div>
 
-        {/* Printable Document Body */}
-        <div style={{ padding: '2rem 2.5rem', color: 'var(--text-primary)' }} id="printable-dossier">
-          {/* Header */}
-          <div style={{ borderBottom: '2px solid var(--color-primary-rose)', paddingBottom: '1rem', marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '3rem 0', color: 'var(--text-secondary)' }}>
+            Generating clinical summary dossier...
+          </div>
+        ) : !dossier ? (
+          <div style={{ textAlign: 'center', padding: '2rem 0', color: 'var(--text-muted)' }}>
+            Unable to generate doctor summary. Please ensure symptom logs are available.
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {/* Patient Header Block */}
+            <div style={{
+              backgroundColor: 'var(--bg-accent-soft)',
+              padding: '1rem 1.25rem',
+              borderRadius: 'var(--radius-md)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '0.75rem',
+              fontSize: '0.86rem'
+            }}>
+              <div><strong>Patient:</strong> {dossier.patientInfo.name}</div>
+              <div><strong>Birth Year:</strong> {dossier.patientInfo.birthYear}</div>
+              <div><strong>Cycle Phase:</strong> {dossier.cycleSummary.lastPeriodDate ? `Last: ${dossier.cycleSummary.lastPeriodDate}` : 'Tracking'}</div>
+              <div><strong>Logged Signals:</strong> {dossier.patientInfo.totalSymptomsLogged} symptom logs</div>
+            </div>
+
+            {/* Primary Complaints */}
             <div>
-              <h2 style={{ fontSize: '1.6rem', color: 'var(--color-burgundy)', fontFamily: 'var(--font-serif)' }}>
-                Longitudinal Health Summary for Clinical Consultation
-              </h2>
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-                Compiled via Dhatri (धात्री) Health Intelligence Platform • Generated: {new Date().toLocaleDateString()}
-              </p>
+              <h4 style={{ color: 'var(--color-burgundy)', fontSize: '0.98rem', marginBottom: '0.6rem' }}>
+                1. Chief Complaints & Symptom Patterns (Past 14 Days)
+              </h4>
+              {dossier.primaryComplaints.length === 0 ? (
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)' }}>No symptoms reported in the past 14 days.</p>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {dossier.primaryComplaints.map((c, i) => (
+                    <div key={i} style={{
+                      padding: '0.75rem 1rem',
+                      border: '1px solid var(--border-card)',
+                      borderRadius: 'var(--radius-sm)',
+                      backgroundColor: 'var(--bg-primary)',
+                      fontSize: '0.86rem'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, color: 'var(--color-burgundy)' }}>
+                        <span>{c.category}</span>
+                        <span>Severity: {c.avgSeverity}/5 (Peak: {c.maxSeverity}/5)</span>
+                      </div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', marginTop: '0.2rem' }}>
+                        Reported across {c.frequencyDays} day(s) in the last 2 weeks.
+                      </div>
+                      {c.patientNotes.length > 0 && (
+                        <div style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: '0.3rem' }}>
+                          Patient notes: "{c.patientNotes.join('; ')}"
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            <div style={{ textAlign: 'right' }}>
-              <span className="pill-badge pill-rose">Physician SBAR Format</span>
-            </div>
-          </div>
 
-          {/* Patient Demographics & Baseline */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '1rem',
-            backgroundColor: 'var(--bg-secondary)',
-            padding: '1rem 1.25rem',
-            borderRadius: 'var(--radius-md)',
-            marginBottom: '1.5rem',
-            fontSize: '0.88rem'
-          }}>
-            <div><strong>Patient Name:</strong> {summary.patientName}</div>
-            <div><strong>Birth Year:</strong> {summary.birthYear}</div>
-            <div><strong>Menstrual Status:</strong> {summary.menstrualStatus}</div>
-            <div><strong>Total Reports Indexed:</strong> {summary.reportCount}</div>
-          </div>
-
-          {/* SBAR Section 1: Situation */}
-          <div style={{ marginBottom: '1.4rem' }}>
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-burgundy)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px', marginBottom: '6px' }}>
-              1. Situation (Chief Context)
-            </h4>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-              {summary.sbar?.situation}
-            </p>
-          </div>
-
-          {/* SBAR Section 2: Background */}
-          <div style={{ marginBottom: '1.4rem' }}>
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-burgundy)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px', marginBottom: '6px' }}>
-              2. Background & Longitudinal Baseline
-            </h4>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-              {summary.sbar?.background}
-            </p>
-          </div>
-
-          {/* SBAR Section 3: Assessment-Ready Biomarkers */}
-          <div style={{ marginBottom: '1.4rem' }}>
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-burgundy)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px', marginBottom: '8px' }}>
-              3. Objective Biomarker Trajectory
-            </h4>
-            {summary.recentBiomarkerHighlights && summary.recentBiomarkerHighlights.length > 0 ? (
-              <div style={{ border: '1px solid var(--border-card)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem' }}>
-                  <thead style={{ backgroundColor: 'var(--bg-secondary)', textAlign: 'left' }}>
-                    <tr>
-                      <th style={{ padding: '8px 12px' }}>Biomarker</th>
-                      <th style={{ padding: '8px 12px' }}>Value</th>
-                      <th style={{ padding: '8px 12px' }}>Lab Reference</th>
-                      <th style={{ padding: '8px 12px' }}>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {summary.recentBiomarkerHighlights.map((bio, idx) => (
-                      <tr key={idx} style={{ borderTop: '1px solid var(--border-subtle)' }}>
-                        <td style={{ padding: '8px 12px', fontWeight: 600 }}>{bio.name}</td>
-                        <td style={{ padding: '8px 12px' }}>{bio.value} {bio.unit}</td>
-                        <td style={{ padding: '8px 12px', color: 'var(--text-muted)' }}>{bio.referenceRange || 'Standard'}</td>
-                        <td style={{ padding: '8px 12px' }}>
-                          <span className={`pill-badge ${bio.status === 'low' || bio.status === 'high' ? 'pill-rose' : 'pill-sage'}`} style={{ fontSize: '0.72rem' }}>
-                            {bio.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            {/* Lifestyle & Clinical Baseline */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
+              <div style={{ padding: '0.9rem', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+                <h5 style={{ margin: '0 0 0.5rem', color: 'var(--color-burgundy)' }}>🌙 Sleep & Energy Trajectory</h5>
+                <p style={{ margin: '0 0 0.25rem', fontSize: '0.84rem' }}>
+                  <strong>Average Sleep:</strong> {dossier.lifestyleBaseline.averageSleepHours} hrs/night
+                </p>
+                <p style={{ margin: 0, fontSize: '0.84rem' }}>
+                  <strong>Energy Vitality:</strong> {dossier.lifestyleBaseline.averageEnergyLevel}
+                </p>
               </div>
-            ) : (
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)' }}>No lab biomarkers recorded yet.</p>
+
+              <div style={{ padding: '0.9rem', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)' }}>
+                <h5 style={{ margin: '0 0 0.5rem', color: 'var(--color-burgundy)' }}>🩸 Menstrual Rhythm Context</h5>
+                <p style={{ margin: '0 0 0.25rem', fontSize: '0.84rem' }}>
+                  <strong>Typical Flow:</strong> {dossier.cycleSummary.flowIntensity}
+                </p>
+                <p style={{ margin: 0, fontSize: '0.84rem' }}>
+                  <strong>Pain Scale:</strong> {dossier.cycleSummary.painLevel}
+                </p>
+              </div>
+            </div>
+
+            {/* Key Biomarkers if available */}
+            {dossier.biomarkers.length > 0 && (
+              <div>
+                <h4 style={{ color: 'var(--color-burgundy)', fontSize: '0.98rem', marginBottom: '0.6rem' }}>
+                  2. Diagnostic Biomarkers (User-Uploaded Lab Reports)
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                  {dossier.biomarkers.map((b, i) => (
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.84rem', padding: '0.5rem 0.8rem', backgroundColor: 'var(--bg-accent-soft)', borderRadius: 'var(--radius-sm)' }}>
+                      <span><strong>{b.name}:</strong> {b.value} {b.unit}</span>
+                      <span style={{ color: 'var(--text-secondary)' }}>Ref: {b.referenceRange || 'Standard'} ({b.reportDate})</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
-          </div>
 
-          {/* SBAR Section 4: Clinician Inquiries */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-burgundy)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '4px', marginBottom: '8px' }}>
-              4. Evidence-Grounded Consultation Questions
-            </h4>
-            <ul style={{ paddingLeft: '1.25rem', fontSize: '0.92rem', color: 'var(--text-primary)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              {summary.sbar?.clinicianInquiries?.map((q, i) => (
-                <li key={i}>{q}</li>
-              ))}
-            </ul>
-          </div>
+            {/* Suggested Physician Questions */}
+            <div>
+              <h4 style={{ color: 'var(--color-burgundy)', fontSize: '0.98rem', marginBottom: '0.6rem' }}>
+                3. Evidence-Based Discussion Points for Consultation
+              </h4>
+              <ol style={{ margin: 0, paddingLeft: '1.25rem', fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                {dossier.suggestedQuestionsForDoctor.map((q, idx) => (
+                  <li key={idx} style={{ marginBottom: '0.35rem' }}>{q}</li>
+                ))}
+              </ol>
+            </div>
 
-          {/* Educational Disclaimer */}
-          <div style={{
-            borderTop: '1px dashed var(--border-subtle)',
-            paddingTop: '1rem',
-            fontSize: '0.75rem',
-            color: 'var(--text-muted)',
-            lineHeight: 1.45
-          }}>
-            <strong>Physician Notice:</strong> This dossier was compiled by Dhatri from patient-authorized records to accelerate clinical intake. It does not provide medical diagnosis, clinical judgment, or therapeutic advice. All decisions remain with the treating physician.
+            {/* Privacy & Legal Disclaimer */}
+            <div style={{
+              backgroundColor: 'var(--bg-secondary)',
+              padding: '0.75rem 1rem',
+              borderRadius: 'var(--radius-md)',
+              borderLeft: '3px solid var(--color-sage)',
+              fontSize: '0.78rem',
+              color: 'var(--text-secondary)'
+            }}>
+              🔒 <strong>Privacy & Clinical Disclaimer:</strong> {dossier.legalDisclaimer} Dhatri never sends your health data to third parties without your explicit authorization.
+            </div>
+
+            {/* Actions */}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginTop: '0.5rem' }}>
+              <button
+                type="button"
+                onClick={handleCopyText}
+                className="btn btn-secondary"
+                style={{ padding: '0.6rem 1.25rem', fontSize: '0.9rem' }}
+              >
+                {copied ? '✓ Copied to Clipboard!' : '📋 Copy Text (SBAR)'}
+              </button>
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="btn btn-primary"
+                style={{ padding: '0.6rem 1.4rem', fontSize: '0.9rem' }}
+              >
+                🖨️ Print / Save PDF
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

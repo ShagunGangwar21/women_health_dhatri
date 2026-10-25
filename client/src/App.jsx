@@ -29,6 +29,7 @@ import MyGoals from './pages/MyGoals';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import AIAssistant from './pages/AIAssistant';
+import HealthTrends from './pages/HealthTrends';
 
 // Public Layout Wrapper with Header & Footer
 function PublicLayout({ children }) {
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="journey" element={<MyJourney />} />
         <Route path="cycle" element={<TrackCycle />} />
         <Route path="symptoms" element={<Symptoms />} />
+        <Route path="trends" element={<HealthTrends />} />
         <Route path="reports" element={<Reports />} />
         <Route path="insights" element={<Insights />} />
         <Route path="learn" element={<LearnDashboard />} />

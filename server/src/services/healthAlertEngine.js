@@ -12,6 +12,7 @@
  * - Compares lab values strictly to supplied reference ranges.
  * - Clearly links observations to underlying records with dates.
  */
+import { evaluateClinicalSafety, ALERT_LEVELS } from '../utils/clinicalAlerts.js';
 
 export function generateHealthAlerts({ symptoms = [], reports = [], cycles = [], daily = [], user = {}, dismissedAlertIds = [] }) {
   const alerts = [];
@@ -20,6 +21,34 @@ export function generateHealthAlerts({ symptoms = [], reports = [], cycles = [],
   const cleanReports = reports.map(r => (r.toObject ? r.toObject() : { ...r }));
   const cleanCycles = cycles.map(c => (c.toObject ? c.toObject() : { ...c }));
   const cleanDaily = daily.map(d => (d.toObject ? d.toObject() : { ...d }));
+
+  // Evaluate Clinical Safety Rules Engine (Emergency, Doctor Consultation, Self-Care Monitoring)
+  const clinicalSafetyResult = evaluateClinicalSafety({
+    symptoms: cleanSymptoms,
+    daily: cleanDaily,
+    cycles: cleanCycles,
+    reports: cleanReports,
+    user
+  });
+
+  // Inject clinical safety alerts with priority
+  clinicalSafetyResult.alerts.forEach(clinAlert => {
+    alerts.push({
+      id: clinAlert.id,
+      category: clinAlert.level === ALERT_LEVELS.EMERGENCY ? 'emergency_alert' : 'clinical_alert',
+      guidanceLevel: clinAlert.level,
+      severity: clinAlert.level === ALERT_LEVELS.EMERGENCY ? 'emergency' : clinAlert.level === ALERT_LEVELS.DOCTOR_CONSULTATION ? 'elevated' : 'moderate',
+      title: clinAlert.badgeLabel,
+      summary: clinAlert.trigger,
+      diffFromBaseline: clinAlert.diffFromBaseline,
+      actionSummary: clinAlert.actionSummary,
+      urgentCareCriteria: clinAlert.urgentCareCriteria,
+      recommendation: clinAlert.recommendation,
+      disclaimer: clinAlert.disclaimer,
+      isDismissed: clinAlert.level === ALERT_LEVELS.EMERGENCY ? false : dismissedAlertIds.includes(clinAlert.id),
+      createdAt: new Date().toISOString().split('T')[0]
+    });
+  });
 
   // =========================================================================
   // 1. BIOMARKER & LABORATORY ANALYSIS

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHealthData } from '../contexts/HealthDataContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import UrgentCareBanner from '../components/UrgentCareBanner';
@@ -229,11 +230,16 @@ export default function Symptoms() {
             {t('symptoms.subtitle', null, 'Symptoms rarely happen in isolation. By logging severity alongside your cycle phase and lifestyle context, Dhatri identifies cross-system patterns over time.')}
           </p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1.25rem', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
-          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--color-rose)' }}></div>
-          <div style={{ fontSize: '0.88rem' }}>
-            {t('symptoms.phaseLabel', null, 'Current Inferred Phase:')} <strong style={{ color: 'var(--color-burgundy)', textTransform: 'uppercase' }}>{currentCyclePhase || 'NOT SET'}</strong>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-end' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem 1.25rem', background: 'var(--color-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-color)' }}>
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'var(--color-rose)' }}></div>
+            <div style={{ fontSize: '0.88rem' }}>
+              {t('symptoms.phaseLabel', null, 'Current Inferred Phase:')} <strong style={{ color: 'var(--color-burgundy)', textTransform: 'uppercase' }}>{currentCyclePhase || 'NOT SET'}</strong>
+            </div>
           </div>
+          <Link to="/app/trends" className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.84rem' }}>
+            📊 View Health Trends & Graphs →
+          </Link>
         </div>
       </div>
 

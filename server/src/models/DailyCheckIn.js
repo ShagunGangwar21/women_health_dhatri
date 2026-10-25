@@ -18,6 +18,8 @@ const dailyCheckInSchema = new mongoose.Schema({
   },
   energyLevel: { type: Number, min: 1, max: 5, default: 3 },
   hydrationGlasses: { type: Number, min: 0, max: 20, default: 6 },
+  nutritionScore: { type: Number, min: 1, max: 5, default: 3 }, // 1 (poor/skipped) to 5 (balanced/nourishing)
+  nutritionNote: { type: String, default: '' },
   notes: { type: String, default: '' }
 }, { timestamps: true });
 
