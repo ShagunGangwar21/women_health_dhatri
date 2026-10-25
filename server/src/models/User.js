@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
   
   // UI & Preferences
   theme: { type: String, enum: ['light', 'dark', 'system'], default: 'system' },
-  language: { type: String, enum: ['en', 'hi'], default: 'en' },
+  language: { type: String, enum: ['en', 'hi', 'hinglish'], default: 'en' },
   
   // Privacy & Consent
   dataSharingConsent: { type: Boolean, default: false },

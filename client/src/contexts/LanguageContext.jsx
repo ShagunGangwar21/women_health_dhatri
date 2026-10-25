@@ -11,15 +11,15 @@ export const LanguageProvider = ({ children }) => {
   const [language, setLanguageState] = useState(() => {
     try {
       const saved = localStorage.getItem('dhatri_language');
-      if (saved === 'hi' || saved === 'en') return saved;
-      if (user?.language === 'hi' || user?.language === 'en') return user.language;
+      if (saved === 'hi' || saved === 'en' || saved === 'hinglish') return saved;
+      if (user?.language === 'hi' || user?.language === 'en' || user?.language === 'hinglish') return user.language;
     } catch (e) {}
     return 'en';
   });
 
   // Sync if user object updates with preferred language
   useEffect(() => {
-    if (user?.language && (user.language === 'hi' || user.language === 'en')) {
+    if (user?.language && (user.language === 'hi' || user.language === 'en' || user.language === 'hinglish')) {
       const saved = localStorage.getItem('dhatri_language');
       if (!saved) {
         setLanguageState(user.language);
@@ -29,7 +29,7 @@ export const LanguageProvider = ({ children }) => {
 
   // Set language with instant state update, localStorage persistence, and backend sync
   const setLanguage = useCallback((newLang) => {
-    if (newLang !== 'en' && newLang !== 'hi') return;
+    if (newLang !== 'en' && newLang !== 'hi' && newLang !== 'hinglish') return;
     setLanguageState(newLang);
     try {
       localStorage.setItem('dhatri_language', newLang);
@@ -63,18 +63,35 @@ export const LanguageProvider = ({ children }) => {
       }
     }
 
-    // Fallback to English if missing in Hindi
-    if (!current && language !== 'en') {
-      let enCurrent = translations.en;
-      for (const k of keys) {
-        if (enCurrent && typeof enCurrent === 'object' && k in enCurrent) {
-          enCurrent = enCurrent[k];
-        } else {
-          enCurrent = null;
-          break;
+    // Fallback logic
+    if (!current) {
+      // If hinglish is missing, try English or Hindi
+      if (language === 'hinglish') {
+        let enCurrent = translations.en;
+        for (const k of keys) {
+          if (enCurrent && typeof enCurrent === 'object' && k in enCurrent) {
+            enCurrent = enCurrent[k];
+          } else {
+            enCurrent = null;
+            break;
+          }
         }
+        current = enCurrent;
       }
-      current = enCurrent;
+
+      // Fallback to English if missing in Hindi
+      if (!current && language !== 'en') {
+        let enCurrent = translations.en;
+        for (const k of keys) {
+          if (enCurrent && typeof enCurrent === 'object' && k in enCurrent) {
+            enCurrent = enCurrent[k];
+          } else {
+            enCurrent = null;
+            break;
+          }
+        }
+        current = enCurrent;
+      }
     }
 
     if (!current) {
@@ -124,7 +141,9 @@ export const LanguageProvider = ({ children }) => {
       setLanguage,
       t,
       formatDate,
-      isHindi: language === 'hi'
+      isHindi: language === 'hi',
+      isHinglish: language === 'hinglish',
+      isEnglish: language === 'en'
     }}>
       {children}
     </LanguageContext.Provider>

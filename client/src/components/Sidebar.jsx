@@ -8,7 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext.jsx';
 
 export default function Sidebar() {
   const { user, logout } = useAuth();
-  const { t, isHindi } = useLanguage();
+  const { language, setLanguage, t, isHindi } = useLanguage();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -61,6 +61,33 @@ export default function Sidebar() {
           )}
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <button
+              id="sidebar-lang-toggle"
+              onClick={() => {
+                const next = language === 'en' ? 'hi' : language === 'hi' ? 'hinglish' : 'en';
+                setLanguage(next);
+              }}
+              className="btn-icon"
+              style={{
+                width: '32px',
+                height: '32px',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                color: 'var(--color-burgundy)',
+                backgroundColor: 'var(--color-blush-pink)',
+                border: '1px solid var(--border-card)',
+                borderRadius: 'var(--radius-sm)'
+              }}
+              title={
+                language === 'en'
+                  ? 'Language: English (Click to switch to हिंदी)'
+                  : language === 'hi'
+                  ? 'भाषा: हिंदी (Click to switch to Hinglish)'
+                  : 'Bhasha: Hinglish (Click to switch to English)'
+              }
+            >
+              {language === 'en' ? 'EN' : language === 'hi' ? 'हिं' : 'Hin'}
+            </button>
             <ThemeToggle />
             <button
               onClick={() => setCollapsed(!collapsed)}
@@ -242,6 +269,33 @@ export default function Sidebar() {
       >
         <DhatriLogo size="small" to="/app" />
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <button
+            id="mobile-lang-toggle"
+            onClick={() => {
+              const next = language === 'en' ? 'hi' : language === 'hi' ? 'hinglish' : 'en';
+              setLanguage(next);
+            }}
+            className="btn-icon"
+            style={{
+              width: '32px',
+              height: '32px',
+              fontSize: '0.74rem',
+              fontWeight: 700,
+              color: 'var(--color-burgundy)',
+              backgroundColor: 'var(--color-blush-pink)',
+              border: '1px solid var(--border-card)',
+              borderRadius: 'var(--radius-sm)'
+            }}
+            title={
+              language === 'en'
+                ? 'Language: English (Click to switch to हिंदी)'
+                : language === 'hi'
+                ? 'भाषा: हिंदी (Click to switch to Hinglish)'
+                : 'Bhasha: Hinglish (Click to switch to English)'
+            }
+          >
+            {language === 'en' ? 'EN' : language === 'hi' ? 'हिं' : 'Hin'}
+          </button>
           <ThemeToggle />
           <button
             onClick={() => setMobileDrawerOpen(true)}

@@ -311,10 +311,42 @@ export default function Settings() {
               />
               <div>
                 <div style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--text-primary)' }}>
-                  {t('settings.langHindi', {}, 'Hindi / Hinglish (हिंदी)')}
+                  {t('settings.langHindi', {}, 'Hindi (हिंदी - देवनागरी लिपि)')}
                 </div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-                  {t('settings.langHindiDesc', {}, 'सहज और समझने योग्य हिंदी/हिंग्लिश संवाद')}
+                  {t('settings.langHindiDesc', {}, 'शुद्ध एवं सहज हिंदी संवाद (देवनागरी लिपि)')}
+                </div>
+              </div>
+            </label>
+
+            <label
+              id="lang-option-hinglish"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.85rem',
+                padding: '1.1rem',
+                borderRadius: 'var(--radius-md)',
+                border: language === 'hinglish' ? '2px solid var(--color-primary-rose)' : '1px solid var(--border-card)',
+                background: language === 'hinglish' ? 'var(--control-hover-bg)' : 'var(--bg-card)',
+                cursor: 'pointer',
+                transition: 'all var(--transition-fast)'
+              }}
+            >
+              <input
+                type="radio"
+                name="appLanguage"
+                value="hinglish"
+                checked={language === 'hinglish'}
+                onChange={() => setLanguage('hinglish')}
+                style={{ accentColor: 'var(--color-primary-rose)', width: '18px', height: '18px' }}
+              />
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--text-primary)' }}>
+                  {t('settings.langHinglish', {}, 'Hinglish (मिक्स हिंदी-English - रोमन लिपि)')}
+                </div>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  {t('settings.langHinglishDesc', {}, 'दैनिक बोलचाल की सहज हिंदी और अंग्रेज़ी का मिश्रण')}
                 </div>
               </div>
             </label>

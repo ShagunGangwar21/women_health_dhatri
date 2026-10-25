@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+**/node_modules/
+client/node_modules/
+server/node_modules/
+package-lock.json
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+server/.env
+client/.env
+
+# Build outputs
+dist/
+**/dist/
+client/dist/
+build/
+**/build/
+*.local
+
+# Temporary files & logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+.tempmediaStorage/
+scratch/
+

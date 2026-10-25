@@ -140,6 +140,21 @@ export default function Icon({ name, size = 20, color = 'currentColor', classNam
             <line x1="21" y1="21" x2="16.65" y2="16.65" stroke={color} strokeWidth="2" strokeLinecap="round" />
           </>
         );
+      case 'mic':
+        return (
+          <>
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </>
+        );
+      case 'mic-off':
+        return (
+          <>
+            <line x1="1" y1="1" x2="23" y2="23" stroke={color} strokeWidth="2" strokeLinecap="round" />
+            <path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" />
+            <path d="M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v4M8 23h8" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" />
+          </>
+        );
       default:
         return <circle cx="12" cy="12" r="8" fill="none" stroke={color} strokeWidth="2" />;
     }
